@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script defer src="../js/totalArticle.js"></script>
+    <script defer src="../js/product.js"></script>
+
+    <title>Orinoco</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar__logo fine">
+                <a href="../index.html">
+                    <img src="../img/Orinoco.png" alt="Logo d'Orinoco">
+                </a>
+            </div>
+            <ul class="navbar__items fine">
+                <li>Accueil</li>
+                <li><a href="../index.html">Boutique</a></li>
+                <li>Avis Client</li>
+                <li>FAQ</li>
+                <li>Contact</li>
+            </ul>
+            <a href="panier.html" class="navbar__panier fine">
+                <span id="number-in-panier" class="navbar__panier__total"></span>
+                <img class="navbar__panier__logo" src="../img/shopping-cart.svg" alt="Icone d'un panier">
+            </a>
+        </nav>
+    </header>
+    <main>
+        <article class="focus-product">
+            <div class="focus-product__photo">
+                <img id="image-product-focus" class="focus-product__photo__image">
+            </div>
+            <div class="focus-product__presentation">
+                <div class="focus-product__presentation__part1">
+                    <span id="name-product-focus" class="focus-product__presentation__part1__name fine"></span>
+                    <span id="price-product-focus" class="focus-product__presentation__part1__price fine"></span>
+                </div>
+                <div class="focus-product__presentation__part2">
+                    <span id="description-product-focus" class="focus-product__presentation__part2__description"></span>
+                    <form class="focus-product__presentation__part2__form" method="" action="">
+                        <div class="focus-product__presentation__part2__form--objectif">
+                            <label for="product-lenses" name="objectifs">Objectifs :</label>
+                            <select name="lenses" id="product-lenses">
+                            </select>
+                        </div>
+                        <div class="focus-product__presentation__part2__form--quantity">
+                            <p>Quantité :</p>
+                            <div class="gen-btn-quantity">
+                                <button id="button-add-less" type="button">-</button>
+                                <p id="product-quantity"></p>
+                                <button id="button-add-more" type="button">+</button>
+                            </div>
+                        </div>
+                        <button id="focus-product-shop" class="focus-product__presentation__part2__form--submit fine" type="button">Ajouter au panier</button>
+                    </form>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>

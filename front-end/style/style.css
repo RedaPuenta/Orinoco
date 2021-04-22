@@ -143,4 +143,110 @@ body {
   font-size: 0.8em;
 }
 
+.focus-product {
+  display: flex;
+  justify-content: center;
+  margin-top: 120px;
+  height: 350px;
+}
+.focus-product__photo {
+  width: 40%;
+  overflow: hidden;
+  margin-right: 50px;
+  display: flex;
+  justify-content: center;
+}
+.focus-product__presentation {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  padding: 10px;
+}
+.focus-product__presentation__part1 {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #a7a7a7;
+}
+.focus-product__presentation__part1__name {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+.focus-product__presentation__part1__price {
+  margin-bottom: 15px;
+}
+.focus-product__presentation__part2 {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.focus-product__presentation__part2__description {
+  font-family: "Nunito", sans-serif;
+  font-size: 0.85em;
+}
+.focus-product__presentation__part2__form {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.focus-product__presentation__part2__form--objectif {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.focus-product__presentation__part2__form--objectif label {
+  font-size: 0.85em;
+  margin-right: 5px;
+}
+.focus-product__presentation__part2__form--objectif select {
+  height: 20px;
+  border: 1px solid #a7a7a7;
+  padding-left: 5px;
+  padding: 0 5px 0 5px;
+}
+.focus-product__presentation__part2__form--quantity {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.focus-product__presentation__part2__form--quantity p:first-child {
+  font-size: 0.85em;
+  margin-right: 5px;
+}
+.focus-product__presentation__part2__form--submit {
+  font-family: "Montserrat", sans-serif;
+  height: 40px;
+  font-size: 0.75em;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+  transition: background-color 0.5s, color 0.5s;
+  border: 1px solid black;
+}
+.focus-product__presentation__part2__form--submit:hover {
+  background-color: transparent;
+  color: black;
+}
+
+.gen-btn-quantity {
+  display: flex;
+  align-items: center;
+}
+.gen-btn-quantity button {
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  border: #a7a7a7 1px solid;
+  cursor: pointer;
+  background-color: white;
+}
+.gen-btn-quantity p {
+  width: 25px;
+  font-size: 0.8em;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+}
+
 /*# sourceMappingURL=style.css.map */

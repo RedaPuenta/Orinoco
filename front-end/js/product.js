@@ -1,10 +1,13 @@
-// Constante qui contient l'ID de l'article qui a été pointé
-let IdSearch = window.location.search.substr(1); 
+// Ici, on préviens JavaScript qu'on va chercher dans l'URL un paramètre
+let params = (new URL(document.location)).searchParams
 
-// Requête HHTP envoyer à l'API pour récupérer les données de l'article en question (méthode GET)
+// Ici, on récupère la valeur du paramètre recherché (ID du produit)
+let IdSearch = params.get("id")
+
+// Requête HHTP pour demander à l'API, les données de l'article en question (méthode GET)
 fetch(`http://localhost:3000/api/cameras/${IdSearch}`)
 
-// 1ère Promesse --> On capture les données de l'API et on les transforment en objet JavaScript
+// 1ère Promesse --> On capture la réponse de l'API et on les transforment en objet JavaScript
 .then(function(reponse){
     return reponse.json()
 })
@@ -26,12 +29,9 @@ fetch(`http://localhost:3000/api/cameras/${IdSearch}`)
         let optionNew = document.createElement("option")
         optionNew.setAttribute("value", reponse.lenses[i])
         document.getElementById("product-lenses").appendChild(optionNew)
-
         // Ici, dans ce nouveau élément <option>, on lui donne une valeur de "lenses"
         optionNew.innerHTML = reponse.lenses[i]
     }
-
-
 
     // On exécute la fonction qui va stocker les ajouts au panier
     saveArticleAdd(reponse)
@@ -42,20 +42,21 @@ fetch(`http://localhost:3000/api/cameras/${IdSearch}`)
     console.log(error);
 })
 
+// FONCTION --> Celle-ci va nous servir à stocker les ajouts au panier
 function saveArticleAdd(reponse){
 
-    // Ici, on attrape les <input> qui se chargent de la personnalisation du produit (lenses, quantité)
+    // Ici, on attrape les balises <input> qui se chargent de la personnalisation du produit (lenses, quantité)
     let lensesOptional = document.getElementById("product-lenses")
     let quantity = document.getElementById("product-quantity")
-    
-    // Ici, on attrape le <button> qui se charge de l'ajout au panier
+    // Ici, on attrape la balise <button> qui se charge de l'ajout au panier
     let buttonAddPanier = document.getElementById("focus-product-shop")
-
     // Ici, on créer un tableau vide qui va accueillir les nouveaux articles à ajouter
     let articleAddFinally = []
 
     // EVENEMENT --> Ecoute le clic sur le bouton "Ajouter au panier"
     buttonAddPanier.addEventListener("click", function(event){
+        
+        // On retire le comportement par défaut du bouton
         event.preventDefault()
         
         // Ici, on créer un objet qui va contenir les informations sur l'article 
@@ -122,21 +123,30 @@ if(sessionStorage.length >= 1 ){
     
     // On exécute la fonction qui affiche le nombre totale d'article qui ont été ajouté (dans l'icone panier)
     displayNumberInPanier()
-
 }
 
+// Ici, on attrape les balises <button> qui se chargent de contrôler la quantité du produit
 let buttonMoins = document.getElementById("button-add-less")
 let buttonPlus = document.getElementById("button-add-more")
+// Ici, on attrape la balise <p> qui se charge de stocker et d'afficher la quantité du produit
 let resultQuantity = document.getElementById("product-quantity")
-
+// Ici, on ajoute dans la balise <p>, la quantité par défaut
 resultQuantity.textContent = 1
 
+// EVENEMENT --> Ecoute le clic sur le bouton + du contrôle de quantité
 buttonPlus.addEventListener("click", function(){
+
+    // On ajoute 1 à la quantité
     resultQuantity.textContent = parseInt(resultQuantity.textContent) + 1
 })
 
+// EVENEMENT --> Ecoute le clic sur le bouton - du contrôle de quantité
 buttonMoins.addEventListener("click", function(){
+
+    // Si la quantité est strictement supérieur à 1 ... (SÉCURITÉ)
     if(parseInt(resultQuantity.textContent) > 1){
+
+        // On enlève 1 à la quantité
         resultQuantity.textContent = parseInt(resultQuantity.textContent) - 1
     }
 })

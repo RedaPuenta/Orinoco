@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script defer src="../js/panier.js"></script>
+    
+    <title>Panier</title>
+</head>
+<body>
+    <main class="page-panier">
+        <div class="page-panier__part1">
+            <div class="page-panier__part1__form-part">
+                <a href="../index.html">
+                    <img src="../img/Orinoco.png" alt="Logo d'Orinoco">
+                </a>
+                <form id="formulaire-contact" class="page-panier__part1__form-part__formulaire" method="POST">
+                    <div class="page-panier__part1__form-part__formulaire__coordonnée">
+                        <h4 class="page-panier__part1__form-part__formulaire__coordonnée--titre">Coordonnées</h4>
+                        <input id="form-email" type="email" placeholder="Adresse e-mail" required pattern="[a-z0-9._%+-]{2,}[@][a-z0-9.-]{2,}[.][a-z]{2,3}" title="Exemple: bernard@gmail.com" maxlength="35">
+                    </div>
+                    <div class="page-panier__part1__form-part__formulaire__adresse">
+                        <h4 class="page-panier__part1__form-part__formulaire__adresse--titre">Adresse de livraison</h4>
+                        <div class="page-panier__part1__form-part__formulaire__adresse__name-client">
+                            <input id="form-first-name" type="text" placeholder="Prénom" required pattern="[a-zA-ZÀ-ÿ-]{2,}" maxlength="30" title="Exemple: Bernard">
+                            <input id="form-last-name" type="text" placeholder="Nom" required pattern="[a-zA-ZÀ-ÿ-]{2,}" maxlength="30" title="Exemple: Arnault">
+                        </div>
+                        <input id="form-adresse" type="text" placeholder="Adresse" required pattern="[1-9][0-9]{0,2}[a-zA-Z]{0,6}\s[a-zA-ZÀ-ÿ-]{2,12}\s[a-zA-ZÀ-ÿ-\s]{3,}" maxlength="40" title="Exemple: 22 avenue Montaigne">
+                        <div class="page-panier__part1__form-part__formulaire__adresse__adresse-detail">
+                            <input id="form-code-postal" type="text" placeholder="Code postal" pattern="[0-9]{5}" required maxlength="5" title="Exemple: 75008">
+                            <input id="form-city" type="text" placeholder="Ville" required pattern="[a-zA-Z-\s][a-z\s'-]{2,}" maxlength="20" title="Exemple: Paris">
+                            <input id="form-state" type="text" placeholder="Pays" required pattern="[a-zA-Z-\s][a-z\s'-]{2,}" maxlength="20" title="Exemple: France">
+                        </div>
+                        <input id="form-tel-number" type="tel" placeholder="Téléphone (facultatif)" pattern="[0][0-9]{9}" maxlength="10" title="Exemple: 066987XXXX">
+                        <div class="page-panier__part1__form-part__formulaire__adresse__finally">
+                            <a href="../index.html">
+                                <img src="../img/left-arrow.svg"  width="16px" alt="Flèche retour au site">
+                                <span>Continuer mon shopping</span>
+                            </a>
+                            <button type="submit">Confirmer la commande</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="page-panier__part2">
+            <div id="panier-group-article" class="page-panier__part2__summary">
+                <template id="template-product-add">  
+                    <article class="page-panier__part2__summary__article">
+                        <div id="bouton-delete-article" class="bouton-delete-article" title="Cliquez pour supprimer cette article">X</div> 
+                        <div class="page-panier__part2__summary__article__content">
+                            <div class="page-panier__part2__summary__article__content__image">
+                                <img id="product-add-image">
+                            </div>
+                            <div class="page-panier__part2__summary__article__content__description">
+                                <div class="page-panier__part2__summary__article__content__description--part1">
+                                    <p id="product-add-name" class="fine"></p>
+                                    <p id="product-add-lenses"></p>
+                                </div>
+                                <div class="page-panier__part2__summary__article__content__description--part2">
+                                    <div class="gen-btn-quantity">
+                                        <button id="button-add-less" type="button">-</button>
+                                        <p id="product-quantity"></p>
+                                        <button id="button-add-more" type="button">+</button>
+                                    </div>
+                                </div>
+                                <p id="product-add-quantity" class="page-panier__part2__summary__article__content__description--part2"></p>
+                            </div>
+                        </div>
+                        <span id="product-add-total" class="page-panier__part2__summary__article__price"></span>
+                    </article> 
+                </template>
+            </div>
+            <div class="page-panier__part2__totale">
+                <span>Total</span>
+                <span id="panier-total-price"></span>
+            </div>
+        </div>
+    </main>
+    <div id="message-panier-vide" class="message-panier-vide">
+        <div>
+            <p>Votre panier est maintenant vide !</p><br>
+            <p>Par conséquent, nous vous redigeons vers la page d'accueil ...</p>
+        </div>
+    </div>
+</body>
+</html>

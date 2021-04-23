@@ -1,7 +1,7 @@
-// Requête HHTP envoyer à l'API pour récupérer les données (méthode GET)
+// Requête HHTP pour demander à l'API, la liste d'article (méthode GET)
 fetch("http://localhost:3000/api/cameras")
 
-// 1ère Promesse --> On capture les données de l'API et on les transforment en objet JavaScript
+// 1ère Promesse --> On capture la réponse de l'API et on les transforment en objet JavaScript
 .then(function(reponse){
     return reponse.json()
 })
@@ -14,17 +14,14 @@ fetch("http://localhost:3000/api/cameras")
 
         // Ici, on attrape le <template> qu'on a créer dans la page "index.html"
         const templateProductList = document.getElementById("template-product-list")
-
         // Ici, on clone le <template>
         const templateProductListClone = document.importNode(templateProductList.content, true)
-
         // Ici, dans le <template> cloné, on distribut aux éléments appropriés, les valeurs du nouvelle objet (id, image, nom, prix) 
-        templateProductListClone.getElementById("collection-direction").setAttribute("href", "pages/product.html?" + reponse[i]._id)
+        templateProductListClone.getElementById("collection-direction").setAttribute("href", "pages/product.html?id=" + reponse[i]._id)
         templateProductListClone.getElementById("image-product").setAttribute("src", reponse[i].imageUrl)
         templateProductListClone.getElementById("image-product").setAttribute("alt", "image de la caméra " + reponse[i].name)
         templateProductListClone.getElementById("name-product").textContent = reponse[i].name
         templateProductListClone.getElementById("price-product").textContent = (reponse[i].price/1000).toFixed(2) + "€"
-        
         // Ici, on ajoute le <template> personnalisé (nouvelle article) dans la page "index.html"
         document.getElementById("collection__group__camera").appendChild(templateProductListClone)
     }

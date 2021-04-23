@@ -45,18 +45,21 @@ body{
     
     &__logo{
         font-size: 1.5em;
-        margin: 20px 0 15px 0;
+        margin: 20px 0 5px 0;
     }
 
     &__items{
         list-style-type: none;
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         margin-bottom: 20px;
 
         li{
             font-size: 0.7em;
             margin: 0 10px;
             color: $color-border;
+            margin-top: 10px;
 
             &:nth-child(2){
                 font-weight: 500;
@@ -76,8 +79,16 @@ body{
         flex-direction: column;
         align-items: flex-end;
 
+        @media screen and (max-width: 600px) {
+            top: 45px;
+        }
+
         &__logo{
             width: 32px;
+
+            @media screen and (max-width: 600px) {
+                width: 24px;
+            }
         }
 
         &__total{
@@ -164,7 +175,13 @@ body{
     display: flex;
     justify-content: center;
     margin-top: 120px;
-    height: 350px;
+    
+
+    @media screen and (max-width: 1000px){
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5em;
+    }
 
     &__photo{
         width: 40%;
@@ -172,6 +189,21 @@ body{
         margin-right: 50px;
         display: flex;
         justify-content: center;
+        height: 350px;
+
+        @media screen and (max-width: 1000px){
+            width: 80%;
+            margin: 0 0 20px 0;
+        }
+
+        &__image{
+            @media screen and (max-width: 1000px){
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                object-position: 50% 50%;
+            }
+        }
     }
 
     &__presentation{
@@ -179,6 +211,11 @@ body{
         flex-direction: column;
         width: 30%;
         padding: 10px;
+
+        @media screen and (max-width: 1000px){
+            width: 80%;
+            padding: 0 0 5em 0;
+        }
 
         &__part1{
             display: flex;
@@ -188,10 +225,18 @@ body{
             &__name{
                 font-size: 1.5em;
                 margin-bottom: 15px;
+
+                @media screen and (max-width: 1000px){
+                    text-align: center;
+                }
             }
     
             &__price{
                 margin-bottom: 15px;
+
+                @media screen and (max-width: 1000px){
+                    text-align: center;
+                }
             }
         }
 
@@ -205,6 +250,10 @@ body{
             &__description{
                 font-family: 'Nunito', sans-serif;
                 font-size: 0.85em;
+
+                @media screen and (max-width: 1000px){
+                    text-align: center;
+                }
             }
 
             &__form{
@@ -216,6 +265,10 @@ body{
                     display: flex;
                     align-items: center;
                     margin-bottom: 15px;
+
+                    @media screen and (max-width: 1000px){
+                        justify-content: center;
+                    }
 
                     label{
                         font-size: 0.85em;
@@ -234,6 +287,10 @@ body{
                     display: flex;
                     align-items: center;
                     margin-bottom: 15px;
+
+                    @media screen and (max-width: 1000px){
+                        justify-content: center;
+                    }
 
                     p:first-child{
                         font-size: 0.85em;
@@ -262,13 +319,272 @@ body{
     }
 }
 
+.page-panier{
+    display: flex;
+    background-color: white;
+
+    @media screen and (max-width: 1000px){
+        flex-direction: column-reverse;
+    }
+    
+    &__part1{
+        background-color: white;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        padding: 70px 0px 70px 0;
+
+        @media screen and (max-width: 1000px){
+            height: 100%;
+        }
+
+        &__form-part{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            &__formulaire{
+                width: 80%;
+
+                &__coordonnée{
+                    margin-top: 30px;
+                    width: 100%;
+
+                    &--titre{
+                        font-size: 1.2em;
+                        font-weight: 600;
+                    }
+                }
+
+                &__adresse{
+                    margin-top: 30px;
+                    width: 100%;
+
+                    &--titre{
+                        font-size: 1.2em;
+                        font-weight: 600;
+                    }
+
+                    &__name-client{
+                        display: flex;
+                        
+                        input:first-of-type{
+                            margin-right: 5px;
+                            
+                        }
+
+                        input:last-of-type{
+                            margin-left: 5px;
+                        }
+                    }
+
+                    &__adresse-detail{
+                        display: flex;
+
+                        input:first-child{
+                            margin-right: 5px;
+                            
+                        }
+
+                        input:nth-child(2){
+                            margin-left: 5px;
+                            margin-right: 5px;
+                        }
+                        
+
+                        input:last-of-type{
+                            margin-left: 5px;
+                        }
+                    }
+
+                    &__finally{
+                        margin-top: 40px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        a{
+                            display: flex;
+                            align-items: center;
+                            
+                            img{
+                                transition: transform 0.5s ease-in-out;
+                            }
+
+                            &:hover img{
+                                transform: translate(-5px);
+                            }
+
+                            span{
+                                margin-left: 5px;
+                                font-size: 0.9em;
+                            }
+                        }
+
+                        button{
+                            width: 200px;
+                            height: 50px;
+                            background-color: black;
+                            color: white;
+                            border-radius: 5px;
+                            font-family: 'Montserrat', sans-serif;
+                            cursor: pointer;
+                            border: 1px solid black;
+                            transition: background-color 0.5s, color 0.5s;
+
+                            &:hover{
+                                background-color: transparent;
+                                color: black;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__part2{
+        background-color: rgb(248, 248, 248);
+        width: 100%;
+        padding: 50px 0 70px 0;
+        border-left: 1px solid $color-border;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @media screen and (max-width: 1000px){
+            border-bottom: 1px solid $color-border;
+        }
+
+        &__summary{
+            width: 70%;
+
+            &__article{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 0 20px 0;
+                border-bottom: 2px solid rgb(202, 202, 202);
+                position: relative;
+
+                &__content{
+                    display: flex;
+                    align-items: center;
+                    
+                    &__image{
+                        width: 100px;
+                        height: 80px;
+                        overflow: hidden;
+                        display: flex;
+                        justify-content: center;
+                    }
+    
+                    &__description{
+                        margin-left: 15px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        &--part1{
+
+                            p:first-of-type{
+                                font-size: 1.2em;
+                            }
+    
+                            p:last-of-type{
+                                margin-top: 2px;
+                                font-size: 0.9em;
+                            }
+                        }
+
+                        &--part2{
+                            display: flex;
+                            align-items: center;
+                            margin-top: 10px;
+                            font-size: 1em;
+                        }
+                        
+                    }
+                }
+
+                &__price{
+                    font-weight: 500;
+                }
+            }
+
+        }
+
+        &__totale{
+            padding-top: 20px;
+            width: 70%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            span:first-of-type{
+                font-size: 1.1em;
+            }
+
+            span:last-of-type{
+                font-size: 1.3em;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.message-panier-vide{
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    
+    p{
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    p:first-child{
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    p:last-child{
+        font-size: 1.5em;
+    }
+}
+
+.bouton-delete-article{
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    background-color: black;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .gen-btn-quantity{
     display: flex;
     align-items: center;
 
     button{
-        height: 20px;
-        width: 20px;
+        height: 18px;
+        width: 18px;
         display: flex;
         justify-content: center;
         border: $color-border 1px solid;
@@ -283,3 +599,4 @@ body{
         font-family: 'Nunito', sans-serif;
     }
 }
+

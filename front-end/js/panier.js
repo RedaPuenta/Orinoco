@@ -182,6 +182,7 @@ function postOrder(tosend, price){
         sessionStorage.setItem("PrixTotal", JSON.stringify(price))
         sessionStorage.setItem("Contact", JSON.stringify(reponse.contact))
         sessionStorage.setItem("NumberCommande", JSON.stringify(reponse.orderId))
+        window.location.assign(window.location.pathname.replace("panier.html", "confirmation.html"))
     })
 
     // ERROR CATCH --> En cas d'erreur liés aux promesses, on affiche l'erreur dans la console

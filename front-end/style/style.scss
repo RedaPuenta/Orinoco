@@ -1,4 +1,5 @@
 $color-border: rgb(167, 167, 167);
+$color-orinoco: #925DF1;
 
 *{
     margin: 0;
@@ -409,7 +410,11 @@ body{
                             align-items: center;
                             
                             img{
-                                transition: transform 0.5s ease-in-out;
+                                transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
+                            }
+
+                            &:hover span{
+                                color: $color-orinoco;
                             }
 
                             &:hover img{
@@ -600,3 +605,64 @@ body{
     }
 }
 
+.body-confirmation{
+    background-color: white;
+}
+
+.confirmation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p{
+        text-align: center;
+    }
+    span{
+        font-weight: bold;
+    }
+
+    &__head{
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__message{
+            margin-top: 20px;
+            font-size: 1.7em;
+            font-weight: bold;
+        }
+    }
+
+    &__info{
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__retour{
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        
+        span{
+            margin-left: 5px;
+            font-weight: normal;
+            color: black;
+        }
+
+        img{
+            transition: transform 0.5s ease-in-out, color 0.5s ease-in-out, 0.5s ease-in-out;
+        }
+
+        &:hover span{
+            color: $color-orinoco;
+        }
+
+        &:hover img{
+            transform: translate(-5px);
+        }
+    }
+}

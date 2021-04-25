@@ -375,7 +375,10 @@ body {
   align-items: center;
 }
 .page-panier__part1__form-part__formulaire__adresse__finally a img {
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+.page-panier__part1__form-part__formulaire__adresse__finally a:hover span {
+  color: #925DF1;
 }
 .page-panier__part1__form-part__formulaire__adresse__finally a:hover img {
   transform: translate(-5px);
@@ -531,6 +534,59 @@ body {
   font-size: 0.8em;
   text-align: center;
   font-family: "Nunito", sans-serif;
+}
+
+.body-confirmation {
+  background-color: white;
+}
+
+.confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.confirmation p {
+  text-align: center;
+}
+.confirmation span {
+  font-weight: bold;
+}
+.confirmation__head {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.confirmation__head__message {
+  margin-top: 20px;
+  font-size: 1.7em;
+  font-weight: bold;
+}
+.confirmation__info {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.confirmation__retour {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
+.confirmation__retour span {
+  margin-left: 5px;
+  font-weight: normal;
+  color: black;
+}
+.confirmation__retour img {
+  transition: transform 0.5s ease-in-out, color 0.5s ease-in-out, 0.5s ease-in-out;
+}
+.confirmation__retour:hover span {
+  color: #925DF1;
+}
+.confirmation__retour:hover img {
+  transform: translate(-5px);
 }
 
 /*# sourceMappingURL=style.css.map */

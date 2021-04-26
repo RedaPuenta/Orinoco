@@ -514,6 +514,7 @@ body {
   font-weight: bold;
   border-radius: 50%;
   cursor: pointer;
+  border: none;
 }
 
 .gen-btn-quantity {

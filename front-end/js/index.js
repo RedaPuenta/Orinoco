@@ -1,4 +1,4 @@
-// Requête HHTP pour demander à l'API, la liste d'article (méthode GET)
+// Requête HHTP pour demander à l'API, la liste de produit (méthode GET)
 fetch("http://localhost:3000/api/cameras")
 
 // 1ère Promesse --> On capture la liste de produit en format JSON et on la transforme en objet JavaScript
@@ -22,14 +22,14 @@ fetch("http://localhost:3000/api/cameras")
 // FONCTION --> Permet d'afficher la liste de produit dans la page d'accueil
 function displayProductInHomePage(productList) {
     
-    // BOUCLE --> Celle-ci va nous servir à distribuer les valeurs de la liste de produit
+    // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit
     for (let i = 0; i < productList.length; i++) {
 
         // On attrape le <template> qu'on a créer dans la page "index.html"
         const templateProductList = document.getElementById("template-product-list")
         // On clone ce <template>
         const templateProductListClone = document.importNode(templateProductList.content, true)
-        // Dans le <template> cloné, on distribut aux éléments appropriés, les valeurs de la liste de produit (id, image, nom, prix) 
+        // Dans ce <template> cloné, on distribut aux éléments appropriés, les valeurs de la liste de produit (id, image, nom, prix) 
         templateProductListClone.getElementById("collection-direction").setAttribute("href", "pages/product.html?id=" + productList[i]._id)
         templateProductListClone.getElementById("image-product").setAttribute("src", productList[i].imageUrl)
         templateProductListClone.getElementById("image-product").setAttribute("alt", "image de la caméra " + productList[i].name)

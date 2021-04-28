@@ -7,14 +7,14 @@ var totalPrice = 0
 // FONCTION --> Permet d'afficher le ou les produits ajoutés dans la page panier
 function displayProductInPanierPage(){
 
-    // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit récupéré du SESSION STORAGE
+    // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit du SESSION STORAGE
     for (let i = 0; i < sessionStorageList.length; i++) {
 
         // On attrape le <template> qu'on a créer dans la page "index.html"
         const templateProductList = document.getElementById("template-product-add")
-        // On clone le <template>
+        // On clone ce <template>
         const templateProductListClone = document.importNode(templateProductList.content, true)
-        // Dans le <template> cloné, on distribut aux éléments appropriés, les valeurs du nouvelle objet (image, nom, prix)
+        // Dans ce <template> cloné, on distribut aux éléments appropriés, les valeurs du nouvelle objet (image, nom, prix)
         templateProductListClone.getElementById("product-add-image").setAttribute("src", sessionStorageList[i].productImage)
         templateProductListClone.getElementById("product-add-image").setAttribute("alt", "image de la caméra " + sessionStorageList[i].productName)
         templateProductListClone.getElementById("product-add-name").textContent = sessionStorageList[i].productName
@@ -23,18 +23,17 @@ function displayProductInPanierPage(){
         templateProductListClone.getElementById("product-add-total").textContent = priceInEuro(sessionStorageList[i].productPrice * parseInt(sessionStorageList[i].productQuantity))
         // Et on ajoute le <template> personnalisé (nouvelle article) dans la page "index.html"
         document.getElementById("panier-group-article").appendChild(templateProductListClone)
-}
+    }
 }
 
 // FONCTION --> Permet d'afficher le prix total de la commande dans la page panier
 function priceTotalPanier(){
 
-    // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit récupéré du SESSION STORAGE
+    // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit du SESSION STORAGE
     for (let i = 0; i < sessionStorageList.length; i++) { 
 
         // Pour chaque produit, on multiplie son prix par sa quantité en remplissant la variable qui accueil le prix total
         totalPrice = totalPrice + (parseInt(sessionStorageList[i].productPrice) * parseInt(sessionStorageList[i].productQuantity))
-    
     }
     
     // Ici, on affiche le prix total de la commande dans son emplacement
@@ -52,7 +51,7 @@ function btnQuantitySpecialPanier(){
     // Ici, on attrape la balise <p> qui se charge de stocker et d'afficher la somme de la commande
     let articleTotalPrice = document.querySelectorAll("#product-add-total")
 
-    // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit récupéré du SESSION STORAGE
+    // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit du SESSION STORAGE
     for (let i = 0; i < sessionStorageList.length; i++) {
 
         // EVENEMENT --> Ecoute le clic sur le bouton +
@@ -60,7 +59,7 @@ function btnQuantitySpecialPanier(){
 
             // On ajoute 1 à la quantité
             resultQuantity[i].textContent = parseInt(resultQuantity[i].textContent) + 1
-            // Dans la liste récupéré du SESSION STORAGE, on remplace la quantité du produit ciblé par la nouvelle
+            // Dans la liste du SESSION STORAGE, on remplace la quantité du produit ciblé par la nouvelle
             sessionStorageList[i].productQuantity = resultQuantity[i].textContent
             // On met à jour et on réaffiche le prix total du produit ciblé
             articleTotalPrice[i].textContent = priceInEuro(sessionStorageList[i].productPrice * parseInt(sessionStorageList[i].productQuantity))
@@ -68,7 +67,7 @@ function btnQuantitySpecialPanier(){
             totalPrice = totalPrice + parseInt(sessionStorageList[i].productPrice)
             // On réaffiche le prix total de la commande qui a été mis à jour
             document.getElementById("panier-total-price").textContent = priceInEuro(totalPrice)
-            // On remplace la liste du SESSION STORAGE par la liste récupéré qu'on a mis à jour
+            // On remplace la liste du SESSION STORAGE par la liste qu'on a mis à jour
             sessionStorage.setItem("TotalArticleAdd", JSON.stringify(sessionStorageList))
         })
 
@@ -80,7 +79,7 @@ function btnQuantitySpecialPanier(){
 
                 // On enlève 1 à la quantité
                 resultQuantity[i].textContent = parseInt(resultQuantity[i].textContent) - 1
-                // Dans la liste récupéré du SESSION STORAGE, on remplace la quantité du produit ciblé par la nouvelle
+                // Dans la liste du SESSION STORAGE, on remplace la quantité du produit ciblé par la nouvelle
                 sessionStorageList[i].productQuantity = resultQuantity[i].textContent
                 // On met à jour et on réaffiche le prix total du produit ciblé
                 articleTotalPrice[i].textContent = priceInEuro(sessionStorageList[i].productPrice * parseInt(sessionStorageList[i].productQuantity))
@@ -88,7 +87,7 @@ function btnQuantitySpecialPanier(){
                 totalPrice = totalPrice - parseInt(sessionStorageList[i].productPrice)
                 // On réaffiche le prix total de la commande qui a été mis à jour
                 document.getElementById("panier-total-price").textContent = priceInEuro(totalPrice)
-                // On remplace la liste du SESSION STORAGE par la liste récupéré qu'on a mis à jour
+                // On remplace la liste du SESSION STORAGE par la liste qu'on a mis à jour
                 sessionStorage.setItem("TotalArticleAdd", JSON.stringify(sessionStorageList))
             }
         })
@@ -100,27 +99,27 @@ function deleteWholeProduct(){
 
     // Ici, on attrape la balise <button> qui se charge de supprimer un article entier
     let deleteWholeArticle = document.querySelectorAll("#bouton-delete-article")
-    // Ici, on attrape la balise <div> qui contient le message de "panier vide" (caché par défaut)
+    // Ici, on attrape la balise <div> qui contient le message de "panier vide" (par défaut en display=none)
     var messagePanierVide = document.getElementById("message-panier-vide")
 
-    // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit récupéré du SESSION STORAGE
+    // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit du SESSION STORAGE
     for (let i = 0; i < sessionStorageList.length; i++) { 
         
         // EVENEMENT --> Ecoute le clic sur le bouton qui supprime l'article entier
         deleteWholeArticle[i].addEventListener("click", function(){
 
-            // On supprime de la liste récupéré, le produit en question
+            // On supprime de la liste, le produit en question
             sessionStorageList.splice(i, 1)
-            // On remplace la liste de produit du SESSION STORAGE par la liste récupéré qu'on a mis à jour
+            // On remplace la liste de produit du SESSION STORAGE par la liste qu'on a mis à jour
             sessionStorage.setItem("TotalArticleAdd", JSON.stringify(sessionStorageList))
 
-            // Si la taille de la liste récupéré est strictement supérieur à 0 ...
+            // Si la taille de la liste est strictement supérieur à 0 ...
             if(sessionStorageList.length > 0){
 
                 // On réactualise la page
                 window.location.reload()
             
-            // Sinon, si la taille de la liste récupéré est égale à 0 ...
+            // Sinon, si la taille de la liste est égale à 0 ...
             } else {
 
                 // On nettoie le SESSION STORAGE
@@ -141,6 +140,7 @@ function deleteWholeProduct(){
 
 // FONCTION --> Permet de préparer les données relatives à la commande qui vont être envoyer à l'API
 function formulaireSubmit(){
+    
     // Ici, on attrape la balise <form> du formulaire
     let formulaire = document.getElementById("formulaire-contact")
 
@@ -165,7 +165,7 @@ function formulaireSubmit(){
         // On créer une variable qui va contenir le prix final de la commande
         var finalOrderPrice = 0
 
-        // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit récupéré du SESSION STORAGE
+        // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit du SESSION STORAGE
         for (let i = 0; i < sessionStorageList.length; i++) {
 
             // BOUCLE --> Celle-ci va nous servir à répéter une opération en fonction de la quantité de chaque produit
@@ -179,7 +179,7 @@ function formulaireSubmit(){
             finalOrderPrice = finalOrderPrice + (parseInt(sessionStorageList[i].productPrice) * parseInt(sessionStorageList[i].productQuantity))
         }
 
-        // On stock et on transforme l'objet à envoyer au serveur au format JSON
+        // On stock et on transforme l'objet à envoyer au serveur en objet JSON
         var order = JSON.stringify({
             contact, products
         })
@@ -201,7 +201,7 @@ function postOrder(tosend, price){
         body: tosend
     })
 
-    // 1ère Promesse --> On capture la réponse de l'API et on les transforment en objet JavaScript
+    // 1ère Promesse --> On capture la réponse de l'API et on la transforment en objet JavaScript
     .then(function(reponse){
         return reponse.json()
     }) 
@@ -209,10 +209,12 @@ function postOrder(tosend, price){
     // 2ème Promesse --> On capture le nouveau objet contenant les données renvoyé par l'API
     .then(function(reponse){
 
-        // Ici, on stock le prix total, l'objet contact et le numéro de commande dans le SESSION STORAGE
+        // On stock le prix total, l'objet contact et le numéro de commande dans le SESSION STORAGE
         sessionStorage.setItem("PrixTotal", JSON.stringify(price))
         sessionStorage.setItem("Contact", JSON.stringify(reponse.contact))
         sessionStorage.setItem("NumberCommande", JSON.stringify(reponse.orderId))
+
+        // On redirige la page vers la page de confirmation (METHODE POUR SITE NON HÉBERGÉ)
         window.location.assign(window.location.pathname.replace("panier.html", "confirmation.html"))
     })
 

@@ -5,7 +5,7 @@ let IdSearch = params.get("id")
 // Requête HHTP pour demander à l'API, les données du produit en question (méthode GET)
 fetch(`http://localhost:3000/api/cameras/${IdSearch}`)
 
-// 1ère Promesse --> On capture le produit en format JSON et on le transforme en objet JavaScript
+// 1ère Promesse --> On capture le produit en objet JSON et on le transforme en objet JavaScript
 .then(function(reponse){
     return reponse.json()
 })
@@ -13,7 +13,7 @@ fetch(`http://localhost:3000/api/cameras/${IdSearch}`)
 // 2ème Promesse --> On capture le nouveau objet contenant le produit
 .then(function(reponse){
 
-    // On exécute la fonction qui permet d'afficher le ou les produits ajoutés dans la page panier
+    // On exécute la fonction qui permet d'afficher le produit ciblé dans la page produit
     displayProductInProductPage(reponse)
 
     // On exécute la fonction qui permet d'ajouter un ou plusieurs dans le SESSION STORAGE (TRIÉ)
@@ -35,10 +35,10 @@ function displayProductInProductPage(productCible){
     document.getElementById("price-product-focus").innerHTML = priceInEuro(productCible.price)
     document.getElementById("description-product-focus").innerHTML = productCible.description
 
-    // BOUCLE --> Celle-ci va nous servir à distribuer les données relatives aux "lentilles" du produit
+    // BOUCLE --> Celle-ci va nous servir à parcourir la liste de "lentille"
     for (let i = 0; i < productCible.lenses.length; i++) {
         
-        // On créer une nouvelle balise <option>, on lui donne une valeur de "lentille" et on l'insère dans son parent <select>
+        // Pour chaque "lentille", on créer une nouvelle balise <option>, on lui donne une valeur et on l'insère dans son parent <select>
         let optionNew = document.createElement("option")
         optionNew.setAttribute("value", productCible.lenses[i])
         optionNew.innerHTML = productCible.lenses[i]
@@ -86,18 +86,21 @@ function addProductInSessionStorage(productCible){
 
             // On récupère la liste de produit du SESSION STORAGE
             articleAddFinallyRecup = JSON.parse(sessionStorage.getItem('TotalArticleAdd'))
+            
+            // On créer une variable qui va nous servir à témoigner d'un fait relative à la boucle ci dessous ... (par défaut = false)
+            var find = false
 
-            // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit qui a été récupéré dans le SESSION STORAGE
+            // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit du SESSION STORAGE
             for (let i = 0; i < articleAddFinallyRecup.length; i++) {
                 
-                // Si dans la liste récupéré, il y a un produit qui a le même "Id" et le même "Lenses" que celui qui veut être ajouté ...
+                // Dans la liste, si il y a un produit qui a le même "Id" et le même "Lenses" que celui qui veut être ajouté ...
                 if(articleAddFinallyRecup[i].productId == addNewArticle.productId && articleAddFinallyRecup[i].productLenses == addNewArticle.productLenses ){
                     
-                    // On indique dans une 1ère variable qu'on a trouvé un produit similaire
+                    // On indique à la variable témoin qu'on a trouvé un produit similaire
                     var find = true
-                    // On indique dans une 2ème variable l'index où se produit a été trouvé
+                    // On indique dans une 2ème variable l'index où se produit similaire a été trouvé
                     var findIndex = i
-                    // Et sors de la boucle (car ça sert à rien de continuer à chercher comme y aura pas d'autres produit similaire)
+                    // Et sors de la boucle (car ça sert à rien de continuer à chercher comme y aura pas d'autres produits similaire)
                     break
                 }
             }
@@ -107,20 +110,20 @@ function addProductInSessionStorage(productCible){
 
                 // On rajoute seulement à la quantité du produit similaire, la quantité du produit qui veut être ajouté
                 articleAddFinallyRecup[findIndex].productQuantity = parseInt(articleAddFinallyRecup[findIndex].productQuantity) + parseInt(addNewArticle.productQuantity)
-                // Et on remplace la liste du SESSION STORAGE par la liste récupéré qu'on a mis à jour
+                // Et on remplace la liste du SESSION STORAGE par la liste qu'on a mis à jour
                 sessionStorage.setItem("TotalArticleAdd", JSON.stringify(articleAddFinallyRecup))
             
             // Sinon, si la boucle ci-dessus n'a pas trouvé un produit similaire à celui qui veut être ajouté ...  
-            } else {
+            } else if(find === false) {
 
-                // On ajoute le nouveau produit dans la liste récupéré
+                // On ajoute le nouveau produit dans la liste
                 articleAddFinallyRecup.push(addNewArticle)
-                // On remplace la liste du SESSION STORAGE par la liste récupéré qu'on a mis à jour
+                // On remplace la liste du SESSION STORAGE par la liste qu'on a mis à jour
                 sessionStorage.setItem("TotalArticleAdd", JSON.stringify(articleAddFinallyRecup))
             }
         }
 
-        // On exécute la fonction qui permet d'afficher, au-dessus de l'icone panier, le nombre totale de produit qui ont été ajouté
+        // A la fin, on exécute la fonction qui permet d'afficher, au-dessus de l'icone panier, le nombre totale de produit qui ont été ajouté
         displayNumberAbovePanier()
     })
 }
@@ -128,43 +131,40 @@ function addProductInSessionStorage(productCible){
 // FONCTION --> Permet de faire fonctionner les bouttons de quantité
 function btnQuantityBase(valueDefault){
 
+    // Ici, on attrape tout les contrôleurs de quantité qui peut y avoir
     let btnQuantityList = document.querySelectorAll(".gen-btn-quantity")
  
-     // Ici, on attrape les balises <button> qui se chargent de contrôler la quantité du produit
-     let buttonMoins = document.querySelectorAll("#button-add-less")
-     let buttonPlus = document.querySelectorAll("#button-add-more")
-     
-     // Ici, on attrape la balise <p> qui se charge de stocker et d'afficher la quantité du produit
-     let resultQuantity = document.querySelectorAll("#product-quantity")
- 
-     for (let i = 0; i < btnQuantityList.length; i++) {
-         
-         // Ici, on ajoute dans la balise <p>, la quantité par défaut
-         resultQuantity[i].textContent = valueDefault
-     }
- 
-     for (let i = 0; i < btnQuantityList.length; i++) {
-         
-         // EVENEMENT --> Ecoute le clic sur le bouton + du contrôle de quantité
-         buttonPlus[i].addEventListener("click", function(){
- 
-             // On ajoute 1 à la quantité
-             resultQuantity[i].textContent = parseInt(resultQuantity[i].textContent) + 1
-         })
- 
-         // EVENEMENT --> Ecoute le clic sur le bouton - du contrôle de quantité
-         buttonMoins[i].addEventListener("click", function(){
- 
-             // Si la quantité est strictement supérieur à 1 ... (SÉCURITÉ)
-             if(parseInt(resultQuantity[i].textContent) > 1){
- 
-                 // On enlève 1 à la quantité
-                 resultQuantity[i].textContent = parseInt(resultQuantity[i].textContent) - 1
-             }
-         })
-     }
- 
- 
+    // Ici, on attrape les balises <button> qui se chargent de contrôler la quantité du produit
+    let buttonMoins = document.querySelectorAll("#button-add-less")
+    let buttonPlus = document.querySelectorAll("#button-add-more")
+    
+    // Ici, on attrape la balise <p> qui se charge de stocker et d'afficher la quantité du produit
+    let resultQuantity = document.querySelectorAll("#product-quantity")
+
+    // BOUCLE --> Celle-ci va nous servir a parcourir la liste de contrôleur de quantité
+    for (let i = 0; i < btnQuantityList.length; i++) {
+        
+        // Pour chaque contrôleur de quantité, on ajoute dans la balise <p>, la quantité par défaut
+        resultQuantity[i].textContent = valueDefault
+
+        // EVENEMENT --> Ecoute le clic sur le bouton + des contrôleurs de quantité
+        buttonPlus[i].addEventListener("click", function(){
+
+            // On ajoute 1 à la quantité
+            resultQuantity[i].textContent = parseInt(resultQuantity[i].textContent) + 1
+        })
+
+        // EVENEMENT --> Ecoute le clic sur le bouton - des contrôleurs de quantité
+        buttonMoins[i].addEventListener("click", function(){
+
+            // Si la quantité est strictement supérieur à 1 ... (SÉCURITÉ)
+            if(parseInt(resultQuantity[i].textContent) > 1){
+
+                // On enlève 1 à la quantité
+                resultQuantity[i].textContent = parseInt(resultQuantity[i].textContent) - 1
+            }
+        })
+    }
 }
 
 // On éxécute la fonction qui permet de faire fonctionner les bouttons de quantité

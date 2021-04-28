@@ -1,6 +1,8 @@
 // FONCTION --> Permet de convertir les prix de l'API en EURO
 function priceInEuro(price){
-    return (price/1000).toFixed(2) + "€"
+    
+    // On prend le prix, on le divise par 1000, on garde 2 chiffre après la virgule, on ajoute le signe € et on retourne le résultat
+    return ((parseInt(price))/1000).toFixed(2) + "€"
 }
 
 // FONCTION --> Permet d'afficher, au-dessus de l'icone panier, le nombre totale de produit qui ont été ajouté
@@ -9,20 +11,20 @@ function displayNumberAbovePanier(){
     // Si il y a au moins 1 objet dans le Session Storage ...
     if(sessionStorage.length >= 1 ){ 
 
-        // Ici, on récupère la liste des produits ajoutés dans le Session Storage
+        // On récupère la liste de produit du Session Storage
         let sessionStorageList = JSON.parse(sessionStorage.getItem('TotalArticleAdd'))
         
-        // Ici, on créer une variable qui va accueillir la quantité totale de produit de la commande
+        // On créer une variable qui va accueillir la quantité totale de tout les produits de la commande
         let totalQuantity = 0
 
-        // BOUCLE --> Celle-ci va nous servir à récupérer le quantité totale de produit de la commande
+        // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit
         for (let i = 0; i < sessionStorageList.length; i++) {
 
-            // Ici, pour chaque produit, on récupère la quantité en remplissant la variable qui accueil la quantité totale
+            // Pour chaque produit, on récupère la quantité en remplissant la variable qui accueil la quantité totale
             totalQuantity = totalQuantity + parseInt(sessionStorageList[i].productQuantity)
         }
 
-        // Ici, on affiche le quantité totale de la commande dans son emplacement (icone panier)
+        // On affiche le quantité totale de la commande dans son emplacement (au dessus de l'icone panier)
         document.getElementById("number-in-panier").textContent = totalQuantity
     }
 }

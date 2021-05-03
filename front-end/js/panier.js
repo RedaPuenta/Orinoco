@@ -192,7 +192,7 @@ function formulaireSubmit(){
 // FONCTION --> Permet d'envoyer les données relatives à la commande à l'API et de récupérer sa réponse
 function postOrder(tosend, price){
 
-    // Requête HHTP pour envoyer à l'API, les données de la commande (méthode GET)
+    // Requête HHTP pour envoyer à l'API, les données de la commande (méthode POST)
     fetch("http://localhost:3000/api/cameras/order", {
         method: 'POST',
         headers: {

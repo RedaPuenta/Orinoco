@@ -667,3 +667,47 @@ body{
         }
     }
 }
+
+.page-404-style{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    background-color: white;
+    z-index: 10;
+
+    &__code{
+        font-size: 4em;
+        font-weight: bold;
+    }
+
+    &__erreur{
+        font-size: 1.5em;
+    }
+
+    &__retour{
+        margin-top: 30px;
+
+        a{
+            color: white;
+            display: flex;
+            align-items: center;
+            background-color: black;
+            padding: 10px 10px;
+            transition: transform 0.3s ease-in-out;
+
+            &:hover{
+                transform: scale(1.05);
+            }
+
+            span{
+                margin-left: 5px;
+            }
+        }
+    }
+}

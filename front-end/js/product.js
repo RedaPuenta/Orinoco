@@ -24,6 +24,10 @@ fetch(`http://localhost:3000/api/cameras/${IdSearch}`)
 // ERROR CATCH --> En cas d'erreur liés aux promesses, on affiche l'erreur dans la console
 .catch(function (error){
     console.log(error);
+    // On attrape la balise <div> qui contient le message d'erreur 404
+    let page_404 = document.querySelector(".page-404-style")
+    // On affiche la page 404
+    page_404.style.display = "flex"
 })
 
 // FONCTION --> Permet d'afficher le produit ciblé dans la page produit

@@ -193,7 +193,7 @@ function formulaireSubmit(){
 function postOrder(tosend, price){
 
     // Requête HHTP pour envoyer à l'API, les données de la commande (méthode POST)
-    fetch("http://localhost:3000/api/cameras/order", {
+    fetch(`${base_uri()}/cameras/order`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json; charset=UTF-8'

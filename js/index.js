@@ -1,5 +1,5 @@
 // Requête HHTP pour demander à l'API, la liste de produit (méthode GET)
-fetch("http://localhost:3000/api/cameras")
+fetch(`${base_uri()}/cameras`)
 
 // 1ère Promesse --> On capture la liste de produit en format JSON et on la transforme en objet JavaScript
 .then(function(reponse){

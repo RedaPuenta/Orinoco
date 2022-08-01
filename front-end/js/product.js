@@ -3,7 +3,7 @@ let params = (new URL(document.location)).searchParams
 let IdSearch = params.get("id")
 
 // Requête HHTP pour demander à l'API, les données du produit en question (méthode GET)
-fetch(`http://localhost:3000/api/cameras/${IdSearch}`)
+fetch(`${base_uri()}/cameras/${IdSearch}`)
 
 // 1ère Promesse --> On capture le produit en objet JSON et on le transforme en objet JavaScript
 .then(function(reponse){

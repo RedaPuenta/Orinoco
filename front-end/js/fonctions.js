@@ -1,3 +1,7 @@
+function base_uri(){
+    return "http://localhost:3000"
+}
+
 // FONCTION --> Permet de convertir les prix de l'API en EURO
 function priceInEuro(price){
     
@@ -9,14 +13,14 @@ function priceInEuro(price){
 function displayNumberAbovePanier(){
     
     // Si il y a au moins 1 objet dans le Session Storage ...
-    if(sessionStorage.length >= 1 ){ 
+    if(sessionStorage.length >= 1 && sessionStorage.getItem('TotalArticleAdd') !== null){ 
 
         // On récupère la liste de produit du Session Storage
         let sessionStorageList = JSON.parse(sessionStorage.getItem('TotalArticleAdd'))
         
         // On créer une variable qui va accueillir la quantité totale de tout les produits de la commande
         let totalQuantity = 0
-
+        
         // BOUCLE --> Celle-ci va nous servir à parcourir la liste de produit
         for (let i = 0; i < sessionStorageList.length; i++) {
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script defer src="../js/fonctions.js"></script>
+    <script defer src="../js/confirmation.js"></script>
+
+    <title>Confirmation</title>
+</head>
+<body class="body-confirmation">
+        <main class="confirmation">
+            <div class="confirmation__head">
+                <img src="../img/Orinoco.png" alt="Logo d'Orinoco" width="250">
+                <p class="confirmation__head__message">Votre commande a bien été enrengistrée !</p>
+            </div>
+            <div class="confirmation__info">
+                <p>Numéro de commande n°<span id="number-commande"></span></p><br>
+                <p>Prénom : <span id="first-name-commande"></span></p><br>
+                <p>Nom : <span id="last-name-commande"></span></p><br>
+                <p>Adresse : <span id="address-commande"></span></p><br>
+                <p>Ville : <span id="city-commande"></span></p><br>
+                <p>Mail : <span id="mail-commande"></span></p><br>
+                <p>Prix total : <span id="prix-total-commande"></span></p>
+            </div>
+            <a class="confirmation__retour" href="../index.html">
+                <img src="../img/left-arrow.svg"  width="16px" alt="Flèche retour au site">
+                <span>Revenir à la page d'accueil</span>
+            </a>
+        </main>
+</body>
+</html>

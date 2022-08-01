@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script defer src="./js/fonctions.js"></script>
+    <script defer src="./js/index.js"></script>
+
+    <title>Orinoco</title>
+</head>
+<body>
+    
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="navbar__logo fine">
+                <img src="img/Orinoco.png" alt="Logo d'Orinoco" width="180">
+            </a>
+            <ul class="navbar__items fine">
+                <li>Accueil</li>
+                <li><a href="index.html">Boutique</a></li>
+                <li>Avis Client</li>
+                <li>FAQ</li>
+                <li>Contact</li>
+            </ul>
+            <a id="panier-direction" href="pages/panier.html" class="navbar__panier fine">
+                <span id="number-in-panier" class="navbar__panier__total"></span>
+                <img class="navbar__panier__logo" src="./img/shopping-cart.svg" alt="Icone d'un panier">
+            </a>
+        </nav>
+    </header>
+    <div id="test"></div>
+    <main>
+        <div class="collection">
+            <h2 class="collection__title fine">CAMERA VINTAGE</h2>
+            <div class="collection__group" id="collection__group__camera">
+                <template id="template-product-list">
+                    <a id="collection-direction">
+                        <article class="collection__group__items">
+                            <img id="image-product" class="collection__group__items__image">
+                            <span id="name-product" class="collection__group__items__name fine">Caméra</span>
+                            <span id="price-product" class="collection__group__items__price fine">24€</span>
+                        </article>
+                    </a>
+                </template>
+            </div>
+        </div>
+    </main>
+            
+</body>
+</html>

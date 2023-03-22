@@ -1,5 +1,5 @@
 function base_uri(){
-    return "https://reda-serveur.com/api/orinoco"
+    return "https://ridabenkou.com/api/orinoco"
 }
 
 // FONCTION --> Permet de convertir les prix de l'API en EURO
